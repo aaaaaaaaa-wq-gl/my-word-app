@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 本格単語学習アプリ 🌸</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- かわいい浮遊装飾 -->
+    <div class="floating-decoration" style="top: 10%; left: 5%; font-size: 2rem;">🌸</div>
+    <div class="floating-decoration" style="top: 20%; right: 10%; font-size: 1.5rem;">💖</div>
+    <div class="floating-decoration" style="bottom: 30%; left: 8%; font-size: 2rem;">🦋</div>
+    <div class="floating-decoration" style="top: 60%; right: 15%; font-size: 1.8rem;">⭐</div>
+    <div class="floating-decoration" style="bottom: 10%; right: 5%; font-size: 2.2rem;">🌙</div>
+    <div class="floating-decoration" style="top: 70%; left: 12%; font-size: 1.6rem;">🎀</div>
+
+    <div class="container">
+        <header>
+            <h1>🌸 本格単語学習アプリ 🌸</h1>
+            <p class="subtitle">楽しく効率的に単語をマスターしよう！</p>
+        </header>
+
+        <!-- ナビゲーション -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="dashboard">📊 ダッシュボード</button>
+            <button class="nav-tab" data-tab="wordlist">📚 単語一覧</button>
+            <button class="nav-tab" data-tab="flashcard">🎴 フラッシュカード</button>
+            <button class="nav-tab" data-tab="quiz">🎯 4択クイズ</button>
+            <button class="nav-tab" data-tab="typing">⌨️ タイピング</button>
+        </nav>
+
+        <!-- ダッシュボード -->
+        <div class="tab-content" id="dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-number" id="totalWords">0</div>
+                    <div class="stat-label">総単語数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-number" id="masteredWords">0</div>
+                    <div class="stat-label">習得済み</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-number" id="studyStreak">0</div>
+                    <div class="stat-label">連続学習日数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-number" id="totalScore">0</div>
+                    <div class="stat-label">累計スコア</div>
+                </div>
+            </div>
+
+            <div class="dashboard-actions">
+                <button class="action-btn primary" onclick="switchTab('flashcard')">
+                    <span class="btn-icon">🎴</span>
+                    <span class="btn-text">フラッシュカードで学習</span>
+                </button>
+                <button class="action-btn success" onclick="switchTab('quiz')">
+                    <span class="btn-icon">🎯</span>
+                    <span class="btn-text">4択クイズに挑戦</span>
+                </button>
+                <button class="action-btn warning" onclick="switchTab('typing')">
+                    <span class="btn-icon">⌨️</span>
+                    <span class="btn-text">タイピング練習</span>
+                </button>
+            </div>
+
+            <div class="progress-section">
+                <h3>🏆 学習進捗</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="overallProgress"></div>
+                </div>
+                <p id="progressText">0% 習得済み</p>
+            </div>
+        </div>
+
+        <!-- 単語一覧 -->
+        <div class="tab-content hidden" id="wordlist">
+            <div class="wordlist-controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 単語を検索...">
+                </div>
+                <div class="filter-controls">
+                    <select id="difficultyFilter">
+                        <option value="all">すべてのレベル</option>
+                        <option value="easy">かんたん 🟢</option>
+                        <option value="medium">ふつう 🟡</option>
+                        <option value="hard">むずかしい 🔴</option>
+                    </select>
+                    <select id="statusFilter">
+                        <option value="all">すべての状態</option>
+                        <option value="new">未学習</option>
+                        <option value="learning">学習中</option>
+                        <option value="mastered">習得済み</option>
+                    </select>
+                </div>
+            </div>
+            <div id="wordGrid" class="word-grid">
+                <!-- 動的に生成 -->
+            </div>
+        </div>
+
+        <!-- フラッシュカード -->
+        <div class="tab-content hidden" id="flashcard">
+            <div class="flashcard-controls">
+                <button id="flashcardStart" class="action-btn primary">🎴 フラッシュカード開始</button>
+                <button id="flashcardShuffle" class="action-btn secondary">🔀 シャッフル</button>
+                <button id="flashcardReview" class="action-btn warning">📝 復習モード</button>
+            </div>
+            
+            <div id="flashcardArea" class="flashcard-area hidden">
+                <div class="flashcard-counter">
+                    <span id="cardCounter">1 / 10</span>
+                </div>
+                
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-inner">
+                        <div class="flashcard-front">
+                            <div class="card-content" id="cardWord">単語</div>
+                            <div class="card-hint">クリックして意味を見る</div>
+                        </div>
+                        <div class="flashcard-back">
+                            <div class="card-content" id="cardMeaning">意味</div>
+                            <div class="card-difficulty" id="cardDifficulty">🟢</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flashcard-buttons">
+                    <button id="cardHard" class="card-btn hard">😰 難しい</button>
+                    <button id="cardGood" class="card-btn good">😊 普通</button>
+                    <button id="cardEasy" class="card-btn easy">😄 簡単</button>
+                </div>
+                
+                <div class="flashcard-navigation">
+                    <button id="prevCard" class="nav-btn">⬅️ 前へ</button>
+                    <button id="nextCard" class="nav-btn">次へ ➡️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4択クイズ -->
+        <div class="tab-content hidden" id="quiz">
+            <div class="quiz-controls">
+                <button id="quizStart" class="action-btn primary">🎯 クイズ開始</button>
+                <select id="quizDifficulty">
+                    <option value="mixed">すべてのレベル</option>
+                    <option value="easy">かんたん 🟢</option>
+                    <option value="medium">ふつう 🟡</option>
+                    <option value="hard">むずかしい 🔴</option>
+                </select>
+                <select id="quizCount">
+                    <option value="10">10問</option>
+                    <option value="20">20問</option>
+                    <option value="30">30問</option>
+                </select>
+            </div>
+            
+            <div id="quizArea" class="quiz-area hidden">
+                <div class="quiz-header">
+                    <div class="quiz-progress">
+                        <span id="quizCounter">問題 1 / 10</span>
+                        <div class="quiz-progress-bar">
+                            <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                        </div>
+                    </div>
+                    <div class="quiz-timer">
+                        <span id="quizTimer">⏰ --:--</span>
+                    </div>
+                </div>
+                
+                <div class="question-card">
+                    <div class="question-text" id="questionText">問題文</div>
+                </div>
+                
+                <div class="options-grid" id="optionsGrid">
+                    <!-- 動的に生成 -->
+                </div>
+                
+                <div class="quiz-feedback hidden" id="quizFeedback">
+                    <!-- フィードバック -->
+                </div>
+                
+                <button id="nextQuestion" class="action-btn primary hidden">次の問題 ➡️</button>
+            </div>
+            
+            <div id="quizResults" class="quiz-results hidden">
+                <!-- 結果表示 -->
+            </div>
+        </div>
+
+<div class="tab-content hidden" id="wordDetailTab">
+  <div id="wordDetail"></div>
+</div>
+
+
+        <!-- タイピング -->
+        <div class="tab-content hidden" id="typing">
+            <div class="typing-controls">
+                <button id="typingStart" class="action-btn primary">⌨️ タイピング開始</button>
+                <select id="typingMode">
+                    <option value="word">単語タイピング</option>
+                    <option value="meaning">意味タイピング</option>
+                </select>
+            </div>
+            
+            <div id="typingArea" class="typing-area hidden">
+                <div class="typing-stats">
+                    <div class="typing-stat">
+                        <span class="stat-label">WPM</span>
+                        <span id="wpm">0</span>
+                    </div>
+                    <div class="typing-stat">
+                        <span class="stat-label">正確性</span>
+                        <span id="accuracy">100%</span>
+                    </div>
+                    <div class="typing-stat">
+                        <span class="stat-label">残り時間</span>
+                        <span id="timeLeft">60s</span>
+                    </div>
+                    <div id="typingTimer">⏰ 00:00</div>
+
+                </div>
+                
+                <div class="typing-display">
+                    <div id="typingPrompt" class="typing-prompt">タイピングする文字</div>
+                </div>
+                
+                <input type="text" id="typingInput" class="typing-input" placeholder="ここにタイピング...">
+                
+                <div class="typing-results hidden" id="typingResults">
+                    <!-- 結果表示 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+<script>
+  // アプリを起動してグローバルに公開
+  window.app = new WordStudyApp();
+  // 既存HTMLやJS内の onclick="switchTab('xxx')" を救済
+  window.switchTab = (name) => window.app.switchTab(name);
+</script>
+
+
+</body>
+</html>
