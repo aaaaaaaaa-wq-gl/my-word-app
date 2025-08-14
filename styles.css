@@ -416,7 +416,7 @@ h1 {
 }
 
 .flashcard-front {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #a7b1df, #a98bc8);
     color: white;
 }
 
@@ -465,17 +465,17 @@ h1 {
 }
 
 .card-btn.hard {
-    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    background: linear-gradient(45deg, #ff6bd8, #dc819a);
     color: white;
 }
 
 .card-btn.good {
-    background: linear-gradient(45deg, #feca57, #ff9ff3);
+    background: linear-gradient(45deg, #f5e0b3, #d6a0cf);
     color: white;
 }
 
 .card-btn.easy {
-    background: linear-gradient(45deg, #48cab2, #1dd1a1);
+    background: linear-gradient(45deg, #d688cb, #9dd6c7);
     color: white;
 }
 
@@ -543,7 +543,7 @@ h1 {
 
 .quiz-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #43e97b, #38f9d7);
+    background: linear-gradient(90deg, #8368d3, #87e7d6);
     transition: width 0.3s ease;
 }
 
@@ -579,7 +579,7 @@ h1 {
     padding: 1.5rem;
     border: none;
     border-radius: 15px;
-    background: linear-gradient(45deg, #ffecd2, #fcb69f);
+    background: linear-gradient(45deg, #ffd2dc, #fc9faa);
     color: #333;
     font-size: 1.1rem;
     font-weight: 600;
@@ -600,7 +600,7 @@ h1 {
 }
 
 .option-btn.incorrect {
-    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    background: linear-gradient(45deg, #e46bff, #c924ee);
     color: white;
 }
 
@@ -620,9 +620,9 @@ h1 {
 }
 
 .quiz-feedback.correct {
-    background: linear-gradient(45deg, #d4edda, #c3e6cb);
-    color: #155724;
-    border: 2px solid #c3e6cb;
+    background: linear-gradient(45deg, #d4eaed, #c3e0e6);
+    color: #152f57;
+    border: 2px solid #c3cfe6;
 }
 
 .quiz-feedback.incorrect {
@@ -718,7 +718,7 @@ h1 {
     font-size: 2rem;
     font-weight: 700;
     color: #333;
-    background: linear-gradient(45deg, #ffecd2, #fcb69f);
+    background: linear-gradient(45deg, #fbd2ff, #fc9f9f);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
