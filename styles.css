@@ -10,7 +10,7 @@
 
 body {
     font-family: 'Nunito', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg,  #bb7697 0%, #d8acc4 100%);
     min-height: 100vh;
     color: #333;
     position: relative;
@@ -209,17 +209,17 @@ h1 {
 }
 
 .action-btn.primary {
-    background: linear-gradient(45deg, #4facfe, #00f2fe);
+    background: linear-gradient(45deg, #73b1e8, #a1faff);
     color: white;
 }
 
 .action-btn.success {
-    background: linear-gradient(45deg, #43e97b, #38f9d7);
+    background: linear-gradient(45deg, #ec9ccc, #8ef4e1);
     color: white;
 }
 
 .action-btn.warning {
-    background: linear-gradient(45deg, #fa709a, #fee140);
+    background: linear-gradient(45deg,  #fc89ab, #efe191);
     color: white;
 }
 
@@ -554,7 +554,7 @@ h1 {
 }
 
 .question-card {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #a8b4eb, #9e80bb);
     color: white;
     padding: 2rem;
     border-radius: 20px;
@@ -595,7 +595,7 @@ h1 {
 }
 
 .option-btn.correct {
-    background: linear-gradient(45deg, #43e97b, #38f9d7);
+    background: linear-gradient(45deg,  #f89ee0, #70e2cd);
     color: white;
 }
 
@@ -879,4 +879,5 @@ h1 {
         font-size: 1.2rem;
         padding: 1rem;
     }
+
 }
